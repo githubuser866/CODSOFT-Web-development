@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        #calculator {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Arial Black', sans-serif;
+            margin-bottom: 20px;
+            color: #4285f4; /* Google Blue */
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 1.2em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        button {
+            width: 48px;
+            height: 48px;
+            margin: 5px;
+            font-size: 1.2em;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:active {
+            background-color: #eee;
+        }
+
+        /* Increase size for Clear (C) and 0 button */
+        button#clear, button#zero {
+            width: calc(100% - 22px);
+        }
+
+        /* Color changes */
+        button#clear {
+            background-color: #ff9800; /* Orange */
+            color: #fff;
+        }
+
+        button#equals {
+            background-color: #4285f4; /* Google Blue */
+            color: #fff;
+        }
+
+        button.operator {
+            background-color: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div id="calculator">
+    <h1>Calculator</h1>
+    <input type="text" id="display" readonly>
+    <br>
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button class="operator" onclick="appendToDisplay('+')">+</button>
+    <button class="operator" onclick="appendToDisplay('*')">*</button>
+    <br>
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button class="operator" onclick="appendToDisplay('-')">-</button>
+    <button class="operator" onclick="appendToDisplay('.')">.</button>
+    <br>
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button id="equals" onclick="calculate()">=</button>
+    <button class="operator" onclick="appendToDisplay('/')">/</button>
+    <button id="zero" onclick="appendToDisplay('0')">0</button>
+    <br>
+    <button id="clear" onclick="clearDisplay()">Clear</button>
+</div>
+
+<script>
+    function appendToDisplay(value) {
+        document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+        try {
+            document.getElementById('display').value = eval(document.getElementById('display').value);
+        } catch (error) {
+            document.getElementById('display').value = 'Error';
+        }
+    }
+</script>
+
+</body>
+</html>
